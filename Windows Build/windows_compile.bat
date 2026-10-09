@@ -17,6 +17,8 @@ if %ERRORLEVEL% EQU 0 (
     echo ---------------------------------------
     echo  Compilation Succss!
     echo ---------------------------------------
+	cd debug
+	BezierPatchWindowRelease.exe patch.txt
 ) else (
     echo.
     echo Compilation failed.
