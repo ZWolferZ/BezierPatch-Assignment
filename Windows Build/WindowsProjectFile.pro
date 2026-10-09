@@ -6,7 +6,7 @@ TEMPLATE = app
 TARGET = BezierPatchWindowRelease
 QT+=core gui widgets opengl openglwidgets
 INCLUDEPATH += C:/msys64/mingw64/include
-INCLUDEPATH += "../project files/headers"
+INCLUDEPATH += "../ProjectFiles/headers"
 LIBS += -LC:/msys64/mingw64/lib -lOpengl32 -lfreeglut -lglu32 -lglew32 -fopenmp
 
 # You can make your code fail to compile if you use deprecated APIs.
@@ -17,10 +17,10 @@ LIBS += -LC:/msys64/mingw64/lib -lOpengl32 -lfreeglut -lglu32 -lglew32 -fopenmp
 #DEFINES += QT_DISABLE_DEPRECATED_UP_TO=0x060000 # disables all APIs deprecated in Qt 6.0.0 and earlier
 
 # Look for the src and headers
-HEADERS += $$files("../project files/headers/*.h")
-SOURCES += $$files("../project files/src/*.cpp")
+HEADERS += $$files("../ProjectFiles/headers/*.h")
+SOURCES += $$files("../ProjectFiles/src/*.cpp")
 
-SOURCE_DIR = "C:/Users/ryanm/Documents/GitHub/BezierPatch-Assignment/Project Files/input"
+SOURCE_DIR = "$$_PRO_FILE_PWD_/../ProjectFiles/input"
 
 DEST_DIR = $$OUT_PWD/debug
 
