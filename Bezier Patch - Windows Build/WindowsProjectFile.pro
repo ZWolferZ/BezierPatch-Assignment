@@ -43,9 +43,9 @@ DEST_DIR_QUOTED = $$shell_quote($$DEST_DIR)
 
 for(FILE, INPUT_FILES) {
     isEmpty(QMAKE_POST_LINK) {
-         QMAKE_POST_LINK = cp $$shell_quote($$FILE) $$shell_quote($$DEST_DIR)
+         QMAKE_POST_LINK = $$QMAKE_COPY $$shell_quote($$FILE) $$shell_quote($$DEST_DIR)
     } else {
-         QMAKE_POST_LINK += && cp $$shell_quote($$FILE) $$shell_quote($$DEST_DIR)
+         QMAKE_POST_LINK += && $$QMAKE_COPY $$shell_quote($$FILE) $$shell_quote($$DEST_DIR)
     }
 }
 
