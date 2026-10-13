@@ -9,9 +9,9 @@
 //  ------------------------
 //  Point3.h
 //  ------------------------
-//  
+//
 //  A minimal class for a point in Cartesian space
-//  
+//
 ///////////////////////////////////////////////////
 
 #ifndef POINT3_H
@@ -24,31 +24,30 @@ class Vector3;
 
 // the class - we will rely on POD for sending to GPU
 class Point3
-    { // Point3
-    public:
-    // the coordinates
-    float x, y, z;
+{ // Point3
+public:
+	// the coordinates
+	float x, y, z;
 
-    // constructors
-    Point3();
-    Point3(float X, float Y, float Z);
-    Point3(const Point3 &other);
-    
-    // equality operator
-    bool operator ==(const Point3 &other) const;
+	// constructors
+	Point3();
+	Point3(float X, float Y, float Z);
+	Point3(const Point3& other);
 
-    
-    // operator that allows us to use array indexing instead of variable names
-    float &operator [] (const int index);
-    const float &operator [] (const int index) const;
+	// equality operator
+	bool operator ==(const Point3& other) const;
 
-    }; // Point3
+	// operator that allows us to use array indexing instead of variable names
+	float& operator [] (const int index);
+	const float& operator [] (const int index) const;
+	Point3 operator+(const Point3& other) const;
 
+}; // Point3
 
 // stream input
-std::istream & operator >> (std::istream &inStream, Point3 &value);
+std::istream& operator >> (std::istream& inStream, Point3& value);
 
 // stream output
-std::ostream & operator << (std::ostream &outStream, const Point3 &value);
-        
+std::ostream& operator << (std::ostream& outStream, const Point3& value);
+
 #endif

@@ -40,7 +40,7 @@ Homogeneous4::Homogeneous4(const Vector3 &other)
     x(other.x),
     y(other.y),
     z(other.z),
-    w(0)
+    w(1)
 {}
 
 Homogeneous4::Homogeneous4(const Homogeneous4 &other)
@@ -56,7 +56,18 @@ Point3 Homogeneous4::Point() const
     { // Homogeneous4::Point()
     Point3 returnVal;
 
-    // TODO: convert from Homogeneous coordinates to a Point
+    if (w != 0.0)
+    {
+        returnVal.x = x / w;
+        returnVal.y = y / w;
+        returnVal.z = z / w;
+    }
+    else
+    {
+        returnVal.x = 0.0;
+        returnVal.y = 0.0;
+        returnVal.z = 0.0;
+    }
 
     return returnVal;
     } // Homogeneous4::Point()
@@ -66,7 +77,9 @@ Vector3 Homogeneous4::Vector() const
     { // Homogeneous4::Vector()
     Vector3 returnVal;
 
-    // TODO: convert from Homogeneous coordinates to a Vector
+    returnVal.x = x;
+    returnVal.y = y;
+    returnVal.z = z;
 
     return returnVal;
     } // Homogeneous4::Vector()
@@ -74,40 +87,42 @@ Vector3 Homogeneous4::Vector() const
 
 // addition operator
 Homogeneous4 Homogeneous4::operator +(const Homogeneous4 &other) const
-    { // Homogeneous4::operator +()
-    Homogeneous4 returnVal;
+{
+	// Homogeneous4::operator +()
 
-    // TODO: add
+	Homogeneous4 returnVal = Homogeneous4(x + other.x, y + other.y, z + other.z, w + other.w);
 
     return returnVal;
     } // Homogeneous4::operator +()
 
 // subtraction operator
 Homogeneous4 Homogeneous4::operator -(const Homogeneous4 &other) const
-    { // Homogeneous4::operator -()
-    Homogeneous4 returnVal;
+{
+	// Homogeneous4::operator -()
 
-    // TODO: subtract
+	    // TODO: subtract
+	Homogeneous4 returnVal = Homogeneous4(x - other.x, y - other.y, z - other.z, w - other.w);
 
     return returnVal;
     } // Homogeneous4::operator -()
 
 // multiplication operator
 Homogeneous4 Homogeneous4::operator *(float factor) const
-    { // Homogeneous4::operator *()
-    Homogeneous4 returnVal;
+{
+	// Homogeneous4::operator *()
 
-    // TODO: scalar multiplication
+	    // TODO: scalar multiplication
+	Homogeneous4 returnVal = Homogeneous4(x * factor, y * factor, z * factor, w * factor);
 
     return returnVal;
     } // Homogeneous4::operator *()
 
 // division operator
 Homogeneous4 Homogeneous4::operator /(float factor) const
-    { // Homogeneous4::operator /()
-    Homogeneous4 returnVal;
+{
+	// Homogeneous4::operator /()
 
-    // TODO: scalar division
+	    Homogeneous4 returnVal = Homogeneous4(x / factor, y / factor, z / factor, w / factor);
 
     return returnVal;
     } // Homogeneous4::operator /()
