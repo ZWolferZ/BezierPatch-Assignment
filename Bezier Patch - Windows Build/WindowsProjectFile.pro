@@ -5,9 +5,9 @@
 TEMPLATE = app
 TARGET = BezierPatchWindowRelease
 QT+=core gui widgets opengl openglwidgets
-INCLUDEPATH += C:/msys64/mingw64/include
-INCLUDEPATH += "../ProjectFiles/headers"
-LIBS += -LC:/msys64/mingw64/lib -lOpengl32 -lfreeglut -lglu32 -lglew32 -fopenmp
+INCLUDEPATH += "$$PWD/../ProjectFiles/bezierpatch/headers"
+LIBS += -L"$$PWD/../ProjectFiles/bezierpatch/libs"
+LIBS += -lOpengl32 -lfreeglut -lglu32 -lglew32 -fopenmp
 
 # You can make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -17,10 +17,10 @@ LIBS += -LC:/msys64/mingw64/lib -lOpengl32 -lfreeglut -lglu32 -lglew32 -fopenmp
 #DEFINES += QT_DISABLE_DEPRECATED_UP_TO=0x060000 # disables all APIs deprecated in Qt 6.0.0 and earlier
 
 # Look for the src and headers
-HEADERS += $$files("../ProjectFiles/headers/*.h")
-SOURCES += $$files("../ProjectFiles/src/*.cpp")
+HEADERS += $$files("../ProjectFiles/bezierpatch/headers/*.h")
+SOURCES += $$files("../ProjectFiles/bezierpatch/src/*.cpp")
 
-SOURCE_DIR = "$$_PRO_FILE_PWD_/../ProjectFiles/input"
+SOURCE_DIR = "$$_PRO_FILE_PWD_/../ProjectFiles/bezierpatch/input"
 
 DEST_DIR = $$OUT_PWD/debug
 
@@ -39,13 +39,16 @@ $$SOURCE_DIR/patch.txt \
 $$SOURCE_DIR/glew32.dll \
 $$SOURCE_DIR/libfreeglut.dll
 
-DEST_DIR_QUOTED = $$shell_quote($$DEST_DIR)
+# stupid windows bullshit
+DEST_DIR_WIN = $$BUILD_DIR
+DEST_DIR_WIN = $$replace(DEST_DIR, /, \\)
 
 for(FILE, INPUT_FILES) {
+    FILE_WIN = $$replace(FILE, /, \\)
     isEmpty(QMAKE_POST_LINK) {
-         QMAKE_POST_LINK = $$QMAKE_COPY $$shell_quote($$FILE) $$shell_quote($$DEST_DIR)
+         QMAKE_POST_LINK = copy /y \"$$FILE_WIN\" \"$$DEST_DIR_WIN\"
     } else {
-         QMAKE_POST_LINK += && $$QMAKE_COPY $$shell_quote($$FILE) $$shell_quote($$DEST_DIR)
+         QMAKE_POST_LINK += && copy /y \"$$FILE_WIN\" \"$$DEST_DIR_WIN\"
     }
 }
 

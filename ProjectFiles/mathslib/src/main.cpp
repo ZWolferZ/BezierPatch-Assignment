@@ -7,11 +7,9 @@
 
 // system libraries
 #include <iostream>
-
-
-
 // main routine
-int main(int argc, char **argv)
+int main()
     { // main()
     std::cout << "Hi" << std::endl;
+	return 0;
     } // main()

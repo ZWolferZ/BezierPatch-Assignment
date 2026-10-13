@@ -4,6 +4,8 @@
 
 TARGET = testLibrary
 TEMPLATE = app
+QT -= gui
+CONFIG += console
 
 INCLUDEPATH += "$$PWD/../ProjectFiles/mathslib/headers"
 HEADERS += $$files("$$PWD/../ProjectFiles/mathslib/headers/*.h")
