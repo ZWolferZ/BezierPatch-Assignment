@@ -46,9 +46,9 @@ DEST_DIR_WIN = $$replace(DEST_DIR, /, \\)
 for(FILE, INPUT_FILES) {
     FILE_WIN = $$replace(FILE, /, \\)
     isEmpty(QMAKE_POST_LINK) {
-         QMAKE_POST_LINK = $$QMAKE_COPY /y \"$$FILE_WIN\" \"$$DEST_DIR_WIN\"
+         QMAKE_POST_LINK = $$QMAKE_COPY \"$$FILE_WIN\" \"$$DEST_DIR_WIN\"
     } else {
-         QMAKE_POST_LINK += && $$QMAKE_COPY /y \"$$FILE_WIN\" \"$$DEST_DIR_WIN\"
+         QMAKE_POST_LINK += && $$QMAKE_COPY \"$$FILE_WIN\" \"$$DEST_DIR_WIN\"
     }
 }
 
