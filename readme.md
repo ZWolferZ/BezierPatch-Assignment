@@ -20,7 +20,7 @@ I don't have a lot of faith this will work without a lot of doing a lot to the m
 
 
 
-##### 0\. Open a terminal (or navigate to) inside the Linux - Redhat Build, and run the following commands
+##### Open a terminal (or navigate to) inside the Linux - Redhat Build, and run the following commands
 
 1. ##### chmod +x redhat\_compile\_and\_run.sh
 2. ##### ./redhat\_compile\_and\_run.sh
