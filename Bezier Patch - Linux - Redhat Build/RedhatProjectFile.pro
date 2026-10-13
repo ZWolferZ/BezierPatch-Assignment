@@ -9,9 +9,9 @@ QT += core gui opengl widgets openglwidgets
 QMAKE_CXXFLAGS += -fopenmp -Wall
 LIBS += -lGL -lGLU -fopenmp
 
-INCLUDEPATH += "$$PWD/../ProjectFiles/headers"
-HEADERS += $$files("$$PWD/../ProjectFiles/headers/*.h")
-SOURCES += $$files("$$PWD/../ProjectFiles/src/*.cpp")
+INCLUDEPATH += "$$PWD/../ProjectFiles/bezierpatch/headers"
+HEADERS += $$files("$$PWD/../ProjectFiles/bezierpatch/headers/*.h")
+SOURCES += $$files("$$PWD/../ProjectFiles/bezierpatch/src/*.cpp")
 
 CONFIG(debug, debug|release|profile) {
     DESTDIR = $$OUT_PWD/debug
@@ -23,6 +23,6 @@ CONFIG(profile, debug|release|profile) {
     DESTDIR = $$OUT_PWD/profile
 }
 
-FILE = $$_PRO_FILE_PWD_/../ProjectFiles/input/patch.txt
+FILE = $$_PRO_FILE_PWD_/../ProjectFiles/bezierpatch/input/patch.txt
 
 QMAKE_POST_LINK = mkdir -p $$shell_quote($$DESTDIR) && cp $$shell_quote($$FILE) $$shell_quote($$DESTDIR)
