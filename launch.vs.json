@@ -5,9 +5,9 @@
         {
             "type": "cppdbg",
             "name": "Debug Bezier Patch",
-            "project": "Windows Build\\build-debug\\debug\\BezierPatchWindowRelease.exe",
-            "cwd": "${workspaceRoot}\\Windows Build\\build-debug\\debug",
-            "program": "${workspaceRoot}\\Windows Build\\build-debug\\debug\\BezierPatchWindowRelease.exe",
+            "project": "Bezier Patch - Windows Build\\build-debug\\debug\\BezierPatchWindowRelease.exe",
+            "cwd": "${workspaceRoot}\\Bezier Patch - Windows Build\\build-debug\\debug",
+            "program": "${workspaceRoot}\\Bezier Patch - Windows Build\\build-debug\\debug\\BezierPatchWindowRelease.exe",
             "args": [ "patch.txt" ],
             "MIMode": "gdb",
             "miDebuggerPath": "C:/msys64/mingw64/bin/gdb.exe",
