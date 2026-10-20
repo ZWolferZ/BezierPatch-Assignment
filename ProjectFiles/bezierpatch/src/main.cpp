@@ -19,12 +19,17 @@
 #include "ControlPoints.h"
 #include "RenderParameters.h"
 #include "RenderController.h"
+#include "Console.h"
 	
 
 // main routine
 int main(int argc, char **argv)
     { // main()
-		
+	
+    CreateConsole();
+
+    std::cout << "test" << std::endl;
+
     // initialize QT
     QApplication renderApp(argc, argv);
 
