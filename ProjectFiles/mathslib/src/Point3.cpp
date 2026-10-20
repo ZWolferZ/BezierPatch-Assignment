@@ -89,3 +89,4 @@ std::ostream& operator << (std::ostream& outStream, const Point3& value)
 	outStream << std::setprecision(4) << value.x << " " << std::setprecision(4) << value.y << " " << std::setprecision(4) << value.z;
 	return outStream;
 } // stream output
+

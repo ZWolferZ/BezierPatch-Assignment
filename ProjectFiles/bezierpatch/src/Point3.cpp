@@ -23,6 +23,16 @@ Point3::Point3(const Point3& other)
 	: x(other.x), y(other.y), z(other.z)
 {}
 
+
+Point3 Point3::ConvertToScreenSpaceCoords(long framebufferHeight, long framebufferWidth)
+{
+
+	float p1PixelX = (x + 1.0f) * 0.5f * static_cast<float>(framebufferWidth);
+	float p1PixelY = (y + 1.0f) * 0.5f * static_cast<float>(framebufferHeight);
+
+	return { p1PixelX, p1PixelY, z };
+}
+
 // equality operator
 bool Point3::operator ==(const Point3& other) const
 { // Point3::operator ==()

@@ -42,6 +42,8 @@ public:
 	const float& operator [] (const int index) const;
 	Point3 operator+(const Point3& other) const;
 
+	Point3 ConvertToScreenSpaceCoords(long framebufferHeight, long framebufferWidth);
+
 }; // Point3
 
 // stream input

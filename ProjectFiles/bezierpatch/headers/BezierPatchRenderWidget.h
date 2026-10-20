@@ -60,7 +60,12 @@ class BezierPatchRenderWidget : public QOpenGLWidget
 	
 	// destructor
     ~BezierPatchRenderWidget();
-			
+	
+	// Choose a postion inside the framebrother and set that pixel to the given colour.
+	void SetPixel(float x, float y, RGBAValue color);
+
+	void DrawLineBetweenPoints( Point3 p1,  Point3 p2, const RGBAValue& color);
+
 	protected:
 	// called when OpenGL context is set up
 	void initializeGL();
@@ -85,6 +90,8 @@ class BezierPatchRenderWidget : public QOpenGLWidget
 	// note that Continue & End assume the button has already been set
 	void ContinueScaledDrag(float x, float y);
 	void EndScaledDrag(float x, float y);
+
+	
 
     }; // class BezierPatchRenderWidget
 

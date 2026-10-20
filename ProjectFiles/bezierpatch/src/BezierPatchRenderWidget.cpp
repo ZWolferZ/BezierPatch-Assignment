@@ -80,6 +80,45 @@ void BezierPatchRenderWidget::resizeGL(int w, int h)
     } // BezierPatchRenderWidget::resizeGL()
 
 
+void BezierPatchRenderWidget::SetPixel(float x, float y, RGBAValue color)
+{
+    int pixelX = static_cast<int>((x + 1.0f) * 0.5f * static_cast<float>(frameBuffer.width));
+    int pixelY = static_cast<int>((y + 1.0f) * 0.5f * static_cast<float>(frameBuffer.height));
+
+    // Bounds checking
+    if (pixelX < 0 || pixelX >= frameBuffer.width || pixelY < 0 || pixelY >= frameBuffer.height)
+    {
+        return;
+    }
+
+    // Write color to the memory block
+    frameBuffer.block[(pixelY * frameBuffer.width) + pixelX] = color;
+}
+
+void BezierPatchRenderWidget::DrawLineBetweenPoints(Point3 p1, Point3 p2, const RGBAValue& color)
+{
+    Point3 screenSpaceCoordsP1 = p1.ConvertToScreenSpaceCoords(frameBuffer.height, frameBuffer.width);
+    Point3 screenSpaceCoordsP2 = p2.ConvertToScreenSpaceCoords(frameBuffer.height, frameBuffer.width);
+
+    float pixels = std::max(std::abs(screenSpaceCoordsP2.x - screenSpaceCoordsP1.x), std::abs(screenSpaceCoordsP2.y - screenSpaceCoordsP1.y));
+
+    if (pixels == 0)
+    {
+        SetPixel(p1.x, p1.y, color);
+        return;
+    }
+
+    for (int j = 0; j <= static_cast<int>(pixels); j++)
+    {
+        float t = static_cast<float>(j) / pixels;
+
+        float normX = p1.x + t * (p2.x - p1.x);
+        float normY = p1.y + t * (p2.y - p1.y);
+
+        SetPixel(normX, normY, color);
+    }
+}
+
 // called every time the widget needs painting
 void BezierPatchRenderWidget::paintGL()
 { // BezierPatchRenderWidget::paintGL()
@@ -151,8 +190,10 @@ void BezierPatchRenderWidget::paintGL()
         } // s parameter loop
     }
 
+	this->DrawLineBetweenPoints(Point3(-1.0f, 0.6f, 0.0f), Point3(0.0f, 0.0f, 0.0f), RGBAValue(255, 255, 255));
     // Put the custom framebufer on the screen to display the image
     glDrawPixels(frameBuffer.width, frameBuffer.height, GL_RGBA, GL_UNSIGNED_BYTE, frameBuffer.block);
+
 
 } // BezierPatchRenderWidget::paintGL()
 
